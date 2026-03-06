@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nebraska.gov · Microsoft 365 Learning Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Outfit:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Outfit:wght@400;500;600&display=swap"></noscript>
+<style>
+:root {
+  --nb-navy:   #003087;
+  --nb-gold:   #FFCD00;
+  --nb-dark:   #00143d;
+  --nb-mid:    #00256b;
+  --surface:   #f0f4fa;
+  --white:     #ffffff;
+  --text:      #0d1b3e;
+  --muted:     #5a6a8a;
+  --border:    rgba(0,48,135,0.12);
+  --card-r:    18px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  background: var(--surface);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── HEADER ─────────────────────────────────────── */
+.portal-header {
+  background: linear-gradient(135deg, var(--nb-dark) 0%, var(--nb-navy) 60%, #1a4faa 100%);
+  padding: 0 48px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.3);
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-seal {
+  width: 48px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 4px rgba(255,205,0,0.35));
+}
+
+.header-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-title .state {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--nb-gold);
+  opacity: 0.9;
+}
+
+.header-title .name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.header-badge {
+  background: rgba(255,205,0,0.15);
+  border: 1px solid rgba(255,205,0,0.3);
+  color: var(--nb-gold);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+/* ── HERO ───────────────────────────────────────── */
+.hero {
+  background: linear-gradient(160deg, var(--nb-dark) 0%, var(--nb-navy) 55%, #1a4faa 100%);
+  padding: 72px 48px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: rgba(255,205,0,0.04);
+  top: -300px; right: -200px;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.03);
+  bottom: -200px; left: -100px;
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--nb-gold);
+  background: rgba(255,205,0,0.1);
+  border: 1px solid rgba(255,205,0,0.25);
+  padding: 5px 18px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 800; letter-spacing: -0.01em;
+  font-size: clamp(36px, 5vw, 58px);
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--nb-gold);
+}
+
+.hero-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.7);
+  max-width: 560px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+.stat {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 16px 28px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+
+.stat-num {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--nb-gold);
+  line-height: 1;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 4px;
+  letter-spacing: 0.05em;
+}
+
+/* ── SEARCH & FILTER ────────────────────────────── */
+.controls {
+  max-width: 1280px;
+  margin: -28px auto 0;
+  padding: 0 48px;
+  position: relative;
+  z-index: 10;
+}
+
+.controls-inner {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 20px 28px;
+  box-shadow: 0 8px 40px rgba(0,48,135,0.12);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+.search-wrap .icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  opacity: 0.4;
+}
+
+#search {
+  width: 100%;
+  padding: 10px 14px 10px 40px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--surface);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#search:focus {
+  border-color: var(--nb-navy);
+  background: #fff;
+}
+
+.filter-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: var(--nb-navy);
+  border-color: var(--nb-navy);
+  color: #fff;
+}
+
+/* ── GRID ────────────────────────────────────────── */
+.grid-section {
+  max-width: 1280px;
+  margin: 40px auto;
+  padding: 0 48px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* ── APP CARD ────────────────────────────────────── */
+.app-card {
+  background: var(--white);
+  border-radius: var(--card-r);
+  border: 1.5px solid var(--border);
+  padding: 28px 24px 22px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--card-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.app-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,48,135,0.12);
+  border-color: transparent;
+}
+
+.app-card:hover::before {
+  transform: scaleX(1);
+}
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--card-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.card-arrow {
+  font-size: 18px;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  color: var(--muted);
+}
+
+.app-card:hover .card-arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+.card-category {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--card-accent-dark, var(--muted));
+  margin-top: 2px;
+}
+
+.card-name {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.card-tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: var(--card-pale);
+  color: var(--card-accent-dark, var(--muted));
+}
+
+.card-action {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--card-accent);
+}
+
+/* ── FOOTER ──────────────────────────────────────── */
+.portal-footer {
+  background: var(--nb-dark);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 32px 48px;
+  font-size: 13px;
+  margin-top: 60px;
+}
+
+.portal-footer strong {
+  color: var(--nb-gold);
+}
+
+.portal-footer a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+}
+
+.portal-footer a:hover {
+  color: var(--nb-gold);
+}
+
+/* ── HIDDEN ──────────────────────────────────────── */
+.app-card.hidden {
+  display: none;
+}
+
+/* ── EMPTY STATE ─────────────────────────────────── */
+.empty-state {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+  display: none;
+}
+
+.empty-state.show { display: block; }
+
+/* ── ANIMATIONS ──────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.app-card {
+  animation: fadeUp 0.4s ease both;
+}
+
+.app-card:nth-child(1)  { animation-delay: 0.03s; }
+.app-card:nth-child(2)  { animation-delay: 0.06s; }
+.app-card:nth-child(3)  { animation-delay: 0.09s; }
+.app-card:nth-child(4)  { animation-delay: 0.12s; }
+.app-card:nth-child(5)  { animation-delay: 0.15s; }
+.app-card:nth-child(6)  { animation-delay: 0.18s; }
+.app-card:nth-child(7)  { animation-delay: 0.21s; }
+.app-card:nth-child(8)  { animation-delay: 0.24s; }
+.app-card:nth-child(9)  { animation-delay: 0.27s; }
+.app-card:nth-child(10) { animation-delay: 0.30s; }
+.app-card:nth-child(11) { animation-delay: 0.33s; }
+.app-card:nth-child(12) { animation-delay: 0.36s; }
+.app-card:nth-child(13) { animation-delay: 0.39s; }
+
+@media (max-width: 768px) {
+  .portal-header, .hero, .controls, .grid-section { padding-left: 20px; padding-right: 20px; }
+  .header-inner { height: 60px; }
+  .hero { padding: 48px 20px 56px; }
+  .hero h1 { font-size: 30px; }
+  .app-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+}
+
+@media (max-width: 520px) {
+  .app-grid { grid-template-columns: 1fr; }
+}
+
+  /* ── BARLOW CONDENSED TYPOGRAPHY OVERRIDES ── */
+  body { font-family: 'Outfit', system-ui, sans-serif; }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(44px, 6.5vw, 76px);
+    letter-spacing: -0.01em;
+    line-height: 1.0;
+    text-transform: uppercase;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--nb-gold);
+  }
+  .hero-eyebrow, .section-label, .stat-label, .filter-btn, .header-badge {
+    font-family: 'Outfit', sans-serif;
+  }
+  .header-title .name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .header-title .state {
+    font-family: 'Outfit', sans-serif;
+  }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+  }
+  .card-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .card-category, .card-tag, .card-action, .card-desc {
+    font-family: 'Outfit', sans-serif;
+  }
+  .hero-sub { font-family: 'Outfit', sans-serif; }
+  #search { font-family: 'Outfit', sans-serif; }
+  .portal-footer { font-family: 'Outfit', sans-serif; }
+
+
+  /* System font fallbacks - render instantly, web fonts swap in */
+  body { font-family: 'Outfit', 'Segoe UI', system-ui, -apple-system, sans-serif; }
+  .hero h1, .sec-title, .card-name, .outro h1, .stat-num, .header-title .name,
+  .step h3, .feat h4, .tip h4, .new-card h4, .res-title {
+    font-family: 'Barlow Condensed', 'Arial Narrow', 'Impact', sans-serif;
+  }
+
+  /* ── FLOATING CHAT BUTTON ─────────────────────────────── */
+  .chat-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .chat-bubble {
+    background: #fff;
+    border: 1.5px solid #e4e8f0;
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a2235;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+    max-width: 220px;
+    line-height: 1.4;
+    display: none;
+    animation: bubbleIn 0.2s cubic-bezier(0.34,1.56,0.64,1) both;
+    position: relative;
+  }
+
+  .chat-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 22px;
+    width: 14px;
+    height: 8px;
+    background: #fff;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    border-bottom: none;
+  }
+
+  .chat-bubble.show { display: block; }
+
+  @keyframes bubbleIn {
+    from { opacity: 0; transform: scale(0.85) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .chat-btn {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #5059C9;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(80,89,201,0.45);
+    transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .chat-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(80,89,201,0.55);
+  }
+
+  .chat-btn:active { transform: scale(0.96); }
+
+  .chat-btn svg { width: 26px; height: 26px; }
+
+  .chat-pulse {
+    position: absolute;
+    top: 0; right: 0;
+    width: 14px; height: 14px;
+    background: #4ade80;
+    border-radius: 50%;
+    border: 2px solid #fff;
+  }
+
+  .chat-pulse::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: rgba(74,222,128,0.4);
+    animation: pulse 2s ease-out infinite;
+  }
+
+  @keyframes pulse {
+    0%   { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
+
+  /* Dropdown panel */
+  .chat-panel {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.16);
+    width: 280px;
+    overflow: hidden;
+    display: none;
+    animation: bubbleIn 0.22s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+
+  .chat-panel.show { display: block; }
+
+  .chat-panel-header {
+    background: #5059C9;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chat-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+
+  .chat-panel-info { flex: 1; }
+
+  .chat-panel-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .chat-panel-role {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 1px;
+  }
+
+  .chat-online {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    color: #4ade80;
+    font-weight: 600;
+  }
+
+  .chat-online-dot {
+    width: 7px; height: 7px;
+    background: #4ade80;
+    border-radius: 50%;
+  }
+
+  .chat-panel-body {
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chat-msg-preview {
+    background: #f0f4fa;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    color: #5a6a8a;
+    line-height: 1.5;
+  }
+
+  .chat-msg-preview strong { color: #1a2235; display: block; margin-bottom: 3px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .chat-send-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #5059C9;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+    width: 100%;
+  }
+
+  .chat-send-btn:hover { background: #3d45a0; }
+
+  .chat-dismiss {
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    color: #aab;
+    cursor: pointer;
+    padding: 4px 0 8px;
+  }
+
+  .chat-dismiss:hover { color: #5a6a8a; }
+
+  /* ── MOBILE: bottom bar instead of FAB ─────────────────── */
+  @media (max-width: 640px) {
+    .chat-fab {
+      bottom: 0;
+      right: 0;
+      left: 0;
+      flex-direction: row;
+      align-items: stretch;
+      padding: 0;
+      gap: 0;
+    }
+
+    .chat-btn {
+      display: none; /* hidden — replaced by the bar */
+    }
+
+    .chat-panel {
+      width: 100%;
+      border-radius: 0;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+      display: flex !important;
+      animation: none;
+    }
+
+    .chat-panel-header {
+      padding: 12px 16px;
+    }
+
+    .chat-panel-body {
+      flex-direction: row;
+      align-items: center;
+      padding: 10px 14px;
+      gap: 10px;
+    }
+
+    .chat-msg-preview { display: none; }
+    .chat-dismiss { display: none; }
+
+    .chat-send-btn {
+      white-space: nowrap;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .chat-panel-info .chat-panel-role { display: none; }
+
+    /* push page content up so bar doesn't cover footer */
+    body { padding-bottom: 72px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="portal-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-seal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 122" width="38" height="23" aria-label="Nebraska state outline">
+  <path d="M2,2 L67,2 L67,32 L198,32 L198,96 L168,120 L2,120 Z"
+        fill="#FFCD00" stroke="#FFCD00" stroke-width="0.5"
+        stroke-linejoin="round" stroke-linecap="round"/>
+</svg></div>
+      <div class="header-title">
+        <span class="state">State of Nebraska</span>
+        <span class="name">M365 Learning Hub</span>
+      </div>
+    </div>
+    <div class="header-badge">13 Guides Available</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Nebraska.gov · IT Training Portal</div>
+  <h1>Microsoft 365<br><em>Getting Started</em> Guides</h1>
+  <p class="hero-sub">Everything you need to get up and running with M365 — one guide per app, built for Nebraska state employees.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">13</div>
+      <div class="stat-label">App Guides</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Slides Each</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">💬</div>
+      <div class="stat-label">Live IT Support</div>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH & FILTER -->
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <span class="icon">🔍</span>
+      <input type="text" id="search" placeholder="Search apps..." oninput="filterCards()">
+    </div>
+    <div class="filter-group">
+      <button class="filter-btn active" onclick="filterBy('all', this)">All</button>
+      <button class="filter-btn" onclick="filterBy('productivity', this)">Productivity</button>
+      <button class="filter-btn" onclick="filterBy('collaboration', this)">Collaboration</button>
+      <button class="filter-btn" onclick="filterBy('power', this)">Power Platform</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP GRID -->
+<section class="grid-section">
+  <div class="section-label">All Applications</div>
+  <div class="app-grid" id="appGrid">
+
+    <!-- Teams -->
+    <a class="app-card" href="getting-started-teams.html"
+       data-name="teams" data-category="collaboration"
+       style="--card-accent:#5059C9;--card-pale:#eef0ff;--card-accent-dark:#3d45a0;">
+      <div class="card-top">
+        <div class="card-icon">💬</div>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-category">Collaboration</div>
+      <div class="card-name">Microsoft Teams</div>
+      <div class="card-desc">Chat, video meetings, file sharing, and channels — your all-in-one collaboration hub.</div>
+      <div class="card-footer">
+        <span class="card-tag">Communication</span>
+        <span class="card-action">Open Guide →</span>
+      </div>
+    </a>
+
+    <!-- SharePoint -->
+    <a class="app-card" href="getting-started-sharepoint.html"
+       data-name="sharepoint" data-category="collaboration"
+       style="--card-accent:#0B6A0B;--card-pale:#e8f5e8;--card-accent-dark:#0a5a0a;">
+      <div class="card-top">
+        <div class="card-icon">🗂️</div>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-category">Collaboration</div>
+      <div class="card-name">SharePoint</div>
+      <div class="card-desc">Team sites, document libraries, and intranet pages for organized, shared content.</div>
+      <div class="card-footer">
+        <span class="card-tag">File Management</span>
+        <span class="card-action">Open Guide →</span>
+      </div>
+    </a>
+
+    <!-- Outlook -->
+    <a class="app-card" href="getting-started-outlook.html"
+       data-name="outlook" data-category="productivity"
+       style="--card-accent:#0072C6;--card-pale:#e8f4ff;--card-accent-dark:#005a9e;">
+      <div class="card-top">
+        <div class="card-icon">📧</div>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-category">Productivity</div>
+      <div class="card-name">Outlook</div>
+      <div class="card-desc">Email, calendar, and contacts — your daily command center for professional communication.</div>
+      <div class="card-footer">
+        <span class="card-tag">Email & Calendar</span>
+        <span class="card-action">Open Guide →</span>
+      </div>
+    </a>
+
+    <!-- OneDrive -->
+    <a class="app-card" href="getting-started-onedrive.html"
+       data-name="onedrive" data-category="productivity"
+       style="--card-accent:#0364B8;--card-pale:#e8f0fd;--card-accent-dark:#0252a0;">
+      <div class="card-top">
+        <div class="card-icon">☁️</div>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-category">Productivity</div>
+      <div class="card-name">OneDrive</div>
+      <div class="card-desc">Personal cloud storage with automatic sync, version history, and easy sharing from anywhere.</div>
+      <div class="card-footer">
+        <span class="card-tag">Cloud Storage</span>
+        <span class="card-action">Open Guide →</span>
+      </div>
+    </a>
+
+    <!-- Word -->
+    <a class="app-card" href="getting-started-word.html"
+       data-name="word" data-category="productivity"
+       style="--card-accent:#1a5296;--card-pale:#e8f0fb;--card-accent-dark:#13407a;">
+      <div class="card-top">
+        <div class="card-icon">📝</div>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-category">Productivity</div>
+      <div class="card-name">Word</div>
+      <div class="card-desc">Create professional documents, reports, and letters with rich formatting and collaboration tools.</div>
+      <div class="card-footer">
+        <span class="card-tag">Documents</span>
+        <span class="card-action">Open Guide →</span>
+      </div>
+    </a>
+
+    <!-- Excel -->
+    <a class="app-card" href="getting-started-excel.html"
+       data-name="excel" data-category="productivity"
+       style="--card-accent:#1D6F42;--card-pale:#e8f5ee;--card-accent-dark:#155a34;">
+      <div class="card-top">
+        <div class="card-icon">📊</div>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-category">Productivity</div>
+      <div class="card-name">Excel</div>
+      <div class="card-desc">Spreadsheets, data analysis, formulas, and charts for powerful number-crunching and reporting.</div>
+      <div class="card-footer">
+        <span class="card-tag">Spreadsheets</span>
+        <span class="card-action">Open Guide →</span>
+      </div>
+    </a>
+
+    <!-- PowerPoint -->
+    <a class="app-card" href="getting-started-powerpoint.html"
+       data-name="powerpoint" data-category="productivity"
+       style="--card-accent:#C43E1C;--card-pale:#fdf0ec;--card-accent-dark:#a33418;">
+      <div class="card-top">
+        <div class="card-icon">📽️</div>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-category">Productivity</div>
+      <div class="card-name">PowerPoint</div>
+      <div class="card-desc">Build compelling presentations with slides, animations, and professional design templates.</div>
+      <div class="card-footer">
+        <span class="card-tag">Presentations</span>
+        <span class="card-action">Open Guide →</span>
+      </div>
+    </a>
+
+    <!-- Planner -->
+    <a class="app-card" href="getting-started-planner.html"
+       data-name="planner" data-category="collaboration"
+       style="--card-accent:#077568;--card-pale:#e6f4f2;--card-accent-dark:#055f54;">
+      <div class="card-top">
+        <div class="card-icon">📋</div>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-category">Collaboration</div>
+      <div class="card-name">Planner</div>
+      <div class="card-desc">Visual task boards and project tracking to keep teams organized and on schedule.</div>
+      <div class="card-footer">
+        <span class="card-tag">Task Management</span>
+        <span class="card-action">Open Guide →</span>
+      </div>
+    </a>
+
+    <!-- To Do -->
+    <a class="app-card" href="getting-started-todo.html"
+       data-name="to do todo" data-category="productivity"
+       style="--card-accent:#2564CF;--card-pale:#eaf0fc;--card-accent-dark:#1d52b0;">
+      <div class="card-top">
+        <div class="card-icon">✅</div>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-category">Productivity</div>
+      <div class="card-name">To Do</div>
+      <div class="card-desc">Personal task lists, reminders, and My Day planning to stay on top of your daily work.</div>
+      <div class="card-footer">
+        <span class="card-tag">Personal Tasks</span>
+        <span class="card-action">Open Guide →</span>
+      </div>
+    </a>
+
+    <!-- Forms -->
+    <a class="app-card" href="getting-started-forms.html"
+       data-name="forms" data-category="productivity"
+       style="--card-accent:#7719AA;--card-pale:#f3e8fb;--card-accent-dark:#60158c;">
+      <div class="card-top">
+        <div class="card-icon">📝</div>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-category">Productivity</div>
+      <div class="card-name">Forms</div>
+      <div class="card-desc">Create surveys, quizzes, and polls with automatic response collection and analytics.</div>
+      <div class="card-footer">
+        <span class="card-tag">Surveys & Quizzes</span>
+        <span class="card-action">Open Guide →</span>
+      </div>
+    </a>
+
+    <!-- Power BI -->
+    <a class="app-card" href="getting-started-powerbi.html"
+       data-name="power bi powerbi" data-category="power"
+       style="--card-accent:#F2C811;--card-pale:#fdf8e3;--card-accent-dark:#b89200;">
+      <div class="card-top">
+        <div class="card-icon">📈</div>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-category">Power Platform</div>
+      <div class="card-name">Power BI</div>
+      <div class="card-desc">Interactive dashboards and data visualizations to turn raw data into actionable insights.</div>
+      <div class="card-footer">
+        <span class="card-tag">Data & Analytics</span>
+        <span class="card-action">Open Guide →</span>
+      </div>
+    </a>
+
+    <!-- Power Automate -->
+    <a class="app-card" href="getting-started-powerautomate.html"
+       data-name="power automate" data-category="power"
+       style="--card-accent:#0066FF;--card-pale:#e6f0ff;--card-accent-dark:#0052cc;">
+      <div class="card-top">
+        <div class="card-icon">⚡</div>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-category">Power Platform</div>
+      <div class="card-name">Power Automate</div>
+      <div class="card-desc">Automate repetitive tasks and workflows between apps — no code required.</div>
+      <div class="card-footer">
+        <span class="card-tag">Automation</span>
+        <span class="card-action">Open Guide →</span>
+      </div>
+    </a>
+
+    <!-- Power Apps -->
+    <a class="app-card" href="getting-started-powerapps.html"
+       data-name="power apps powerapps" data-category="power"
+       style="--card-accent:#742774;--card-pale:#f5e8f5;--card-accent-dark:#5e1f5e;">
+      <div class="card-top">
+        <div class="card-icon">📱</div>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-category">Power Platform</div>
+      <div class="card-name">Power Apps</div>
+      <div class="card-desc">Build custom business apps for web and mobile without traditional coding skills.</div>
+      <div class="card-footer">
+        <span class="card-tag">App Development</span>
+        <span class="card-action">Open Guide →</span>
+      </div>
+    </a>
+
+    <div class="empty-state" id="emptyState">
+      <div style="font-size:48px;margin-bottom:12px;">🔍</div>
+      <div style="font-size:16px;font-weight:600;">No apps found</div>
+      <div style="font-size:14px;margin-top:4px;">Try a different search or filter.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="portal-footer">
+  <p>
+    <strong>State of Nebraska · Nebraska.gov</strong> &nbsp;·&nbsp;
+    Department of Insurance IT &nbsp;·&nbsp;
+    Questions? <a href="https://teams.microsoft.com/l/chat/0/0?users=lance.terrill@nebraska.gov&message=Hi%20Lance%2C%20I%20have%20a%20question%20about%20M365!">Message Lance on Teams</a>
+  </p>
+  <p style="margin-top:8px;font-size:12px;">All guides reference Microsoft 365 as licensed and deployed for Nebraska state employees.</p>
+</footer>
+
+<script>
+let activeFilter = 'all';
+
+function filterCards() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const cards = document.querySelectorAll('.app-card');
+  let visible = 0;
+
+  cards.forEach(card => {
+    const name = (card.dataset.name || '').toLowerCase();
+    const cat  = (card.dataset.category || '').toLowerCase();
+    const desc = (card.querySelector('.card-desc')?.textContent || '').toLowerCase();
+
+    const matchSearch = !q || name.includes(q) || desc.includes(q);
+    const matchFilter = activeFilter === 'all' || cat === activeFilter;
+
+    if (matchSearch && matchFilter) {
+      card.classList.remove('hidden');
+      visible++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+
+  document.getElementById('emptyState').classList.toggle('show', visible === 0);
+}
+
+function filterBy(cat, btn) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards();
+}
+</script>
+
+<!-- ── FLOATING CHAT BUTTON ── -->
+<div class="chat-fab" id="chatFab">
+  <!-- Desktop panel (shown on button click) -->
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-panel-header">
+      <div class="chat-avatar">👤</div>
+      <div class="chat-panel-info">
+        <div class="chat-panel-name">Lance Terrill</div>
+        <div class="chat-panel-role">NDOI · IT Support</div>
+      </div>
+      <div class="chat-online"><div class="chat-online-dot"></div>Available</div>
+    </div>
+    <div class="chat-panel-body">
+      <div class="chat-msg-preview">
+        <strong>Message Preview</strong>
+        Hi Lance, I need help with this M365 guide!
+      </div>
+      <a class="chat-send-btn"
+         href="https://teams.microsoft.com/l/chat/0/0?users=lance.terrill@nebraska.gov&message=Hi%20Lance%2C%20I%20need%20help%20with%20this%20M365%20guide!"
+         target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Open in Teams
+      </a>
+      <div class="chat-dismiss" onclick="toggleChat()">Dismiss</div>
+    </div>
+  </div>
+
+  <!-- Desktop FAB button -->
+  <button class="chat-btn" id="chatBtn" onclick="toggleChat()" aria-label="Chat with IT Support">
+    <div class="chat-pulse"></div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+function toggleChat() {
+  const panel = document.getElementById('chatPanel');
+  panel.classList.toggle('show');
+}
+// Close panel if clicking outside
+document.addEventListener('click', function(e) {
+  const fab = document.getElementById('chatFab');
+  if (!fab.contains(e.target)) {
+    document.getElementById('chatPanel').classList.remove('show');
+  }
+});
+</script>
+
+</body>
+</html>

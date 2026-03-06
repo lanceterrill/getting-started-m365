@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Getting Started with Microsoft Power BI — Nebraska.gov</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Outfit:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Outfit:wght@400;500;600&display=swap"></noscript>
+<style>
+  :root {
+    --c1: #b89200; --c2: #d4a800; --c3: #F2C811;
+    --pale: #fdf8e3;
+    --gray: #f4f6f8; --text: #1a1a2e; --muted: #5a6a7a; --white: #fff; --r: 16px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Outfit', system-ui, sans-serif; background: var(--gray); color: var(--text); line-height: 1.6; }
+
+  /* Back nav */
+  .back-nav { background: var(--c1); padding: 10px 36px; }
+  .back-nav a { color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 600; text-decoration: none; letter-spacing: 0.06em; }
+  .back-nav a:hover { color: #fff; }
+
+  .slide { max-width: 960px; margin: 32px auto; background: var(--white); border-radius: 24px; overflow: hidden; box-shadow: 0 8px 48px rgba(0,0,0,0.1); }
+  .slide-header { background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 60%, var(--c3) 100%); color: #fff; padding: 12px 36px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .badge { background: rgba(255,255,255,0.18); border-radius: 20px; padding: 3px 14px; font-size: 11px; }
+  .slide-footer { background: var(--gray); padding: 14px 36px; display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); border-top: 1px solid #e4e8f0; }
+  .slide-footer a { color: var(--c1); text-decoration: none; }
+
+  /* Hero */
+  .hero { background: linear-gradient(160deg, var(--c1) 0%, var(--c2) 55%, var(--c3) 100%); color: #fff; padding: 72px 56px 60px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content:''; position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(255,255,255,0.04); top:-200px; right:-150px; }
+  .hero-icon { font-size: 64px; margin-bottom: 16px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25)); }
+  .hero h1 { font-size: clamp(34px,5vw,52px); font-weight: 700; line-height: 1.15; margin-bottom: 14px; }
+  .hero h1 em { font-style: italic; color: rgba(255,255,255,0.7); font-size: 0.7em; display: block; }
+  .hero-sub { font-size: 16px; color: rgba(255,255,255,0.75); max-width: 540px; margin: 0 auto 32px; line-height: 1.7; }
+  .hero-pills { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .pill { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 20px; padding: 6px 16px; font-size: 13px; font-weight: 500; }
+
+  /* Slide body */
+  .slide-body { padding: 40px 48px; }
+  .sec-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--c1); margin-bottom: 6px; }
+  .sec-title { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .sec-sub { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+
+  /* Steps */
+  .steps { display: flex; flex-direction: column; gap: 14px; }
+  .step { display: flex; gap: 16px; background: var(--pale); border-radius: 14px; padding: 18px 20px; align-items: flex-start; }
+  .step-num { width: 36px; height: 36px; border-radius: 10px; background: var(--c1); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; flex-shrink: 0; }
+  .step h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .step p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  /* Features grid */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+  @media(max-width:640px){ .features { grid-template-columns: 1fr 1fr; } }
+  .feat { background: var(--pale); border-radius: 12px; padding: 18px; }
+  .feat-icon { font-size: 26px; margin-bottom: 8px; }
+  .feat h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .feat p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* Tips */
+  .tips { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width:540px){ .tips { grid-template-columns: 1fr; } }
+  .tip { background: #fff; border: 1.5px solid #e4e8f0; border-left: 3px solid var(--c1); border-radius: 10px; padding: 14px 16px; }
+  .tip h4 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+  .tip p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* Shortcuts */
+  .shortcuts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media(max-width:540px){ .shortcuts { grid-template-columns: 1fr; } }
+  .shortcut { display: flex; align-items: center; gap: 14px; background: #fff; border: 1.5px solid #e4e8f0; border-radius: 12px; padding: 14px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .key { background: var(--c1); color: #fff; padding: 7px 13px; border-radius: 8px; font-family: 'Outfit', monospace; font-size: 13px; font-weight: 700; flex-shrink: 0; letter-spacing: 0.03em; box-shadow: 0 3px 8px rgba(0,0,0,0.25), inset 0 -2px 0 rgba(0,0,0,0.2); min-width: 72px; text-align: center; }
+  .shortcut span { font-size: 14px; color: var(--text); font-weight: 500; }
+
+  /* What's New */
+  .new-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width:540px){ .new-grid { grid-template-columns: 1fr; } }
+  .new-card { background: var(--pale); border-radius: 12px; padding: 18px; display: flex; gap: 14px; align-items: flex-start; }
+  .new-badge { background: var(--c1); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.08em; flex-shrink: 0; margin-top: 3px; }
+  .new-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .new-card p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* Outro */
+  .outro { padding: 60px 48px; text-align: center; background: linear-gradient(160deg, var(--c1) 0%, var(--c2) 60%, var(--c3) 100%); color: #fff; }
+  .outro-icon { font-size: 56px; margin-bottom: 16px; }
+  .outro h1 { font-size: 34px; font-weight: 700; margin-bottom: 12px; }
+  .outro h1 em { color: rgba(255,255,255,0.7); font-style: italic; }
+  .outro-sub { font-size: 15px; color: rgba(255,255,255,0.75); max-width: 480px; margin: 0 auto 28px; line-height: 1.7; }
+  .cta-btn { display: inline-block; background: #FFCD00; color: #003087; font-size: 15px; font-weight: 700; padding: 14px 32px; border-radius: 50px; text-decoration: none; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+  .outro-link { display: block; font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 10px; }
+  .outro-link a { color: rgba(255,255,255,0.85); }
+
+  /* Resources */
+  .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0 28px; }
+  @media(max-width:640px){ .res-grid { grid-template-columns: 1fr; } }
+  .res-link { display: flex; align-items: flex-start; gap: 14px; background: var(--pale); border: 1.5px solid #e4e8f0; border-radius: 14px; padding: 18px 16px; text-decoration: none; color: inherit; transition: all 0.18s; }
+  .res-link:hover { background: #fff; border-color: var(--c2); box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-1px); }
+  .res-link.res-primary { border-left: 3px solid var(--c1); }
+  .res-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+  .res-title { font-size: 14px; font-weight: 700; color: #1a2235; margin-bottom: 3px; }
+  .res-desc { font-size: 12px; color: #6b7a9a; line-height: 1.5; }
+  .res-arr { margin-left: auto; font-size: 16px; color: #aab; flex-shrink: 0; align-self: center; }
+  .res-back { text-align: center; padding-top: 8px; }
+  .back-link-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--c1); color: #fff; padding: 10px 24px; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; }
+  .back-link-btn:hover { opacity: 0.9; }
+
+  /* ── BARLOW CONDENSED TYPOGRAPHY OVERRIDES ── */
+  body { font-family: 'Outfit', system-ui, sans-serif; }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(40px, 6vw, 68px);
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    text-transform: uppercase;
+  }
+  .hero h1 em {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 0.45em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+    opacity: 0.7;
+    font-style: normal;
+  }
+  .sec-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+  .back-nav {
+    font-family: 'Outfit', sans-serif;
+  }
+  .slide-header, .badge, .slide-footer {
+    font-family: 'Outfit', sans-serif;
+  }
+  .sec-eyebrow {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+  }
+  .step h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.02em; text-transform: uppercase; }
+  .feat h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.02em; text-transform: uppercase; }
+  .tip h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.02em; text-transform: uppercase; }
+  .new-card h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.02em; text-transform: uppercase; }
+  .res-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.02em; text-transform: uppercase; }
+  .outro h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 54px);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+  .outro h1 em { font-family: 'Outfit', sans-serif; font-weight: 300; font-style: normal; font-size: 0.55em; display: block; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.1em; }
+  .cta-btn { font-family: 'Outfit', sans-serif; font-weight: 700; }
+  .pill { font-family: 'Outfit', sans-serif; font-weight: 500; }
+  .key { font-family: 'Outfit', monospace; font-weight: 700; }
+
+
+  /* System font fallbacks - render instantly, web fonts swap in */
+  body { font-family: 'Outfit', 'Segoe UI', system-ui, -apple-system, sans-serif; }
+  .hero h1, .sec-title, .card-name, .outro h1, .stat-num, .header-title .name,
+  .step h3, .feat h4, .tip h4, .new-card h4, .res-title {
+    font-family: 'Barlow Condensed', 'Arial Narrow', 'Impact', sans-serif;
+  }
+
+  /* ── FLOATING CHAT BUTTON ─────────────────────────────── */
+  .chat-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .chat-bubble {
+    background: #fff;
+    border: 1.5px solid #e4e8f0;
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a2235;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+    max-width: 220px;
+    line-height: 1.4;
+    display: none;
+    animation: bubbleIn 0.2s cubic-bezier(0.34,1.56,0.64,1) both;
+    position: relative;
+  }
+
+  .chat-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 22px;
+    width: 14px;
+    height: 8px;
+    background: #fff;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    border-bottom: none;
+  }
+
+  .chat-bubble.show { display: block; }
+
+  @keyframes bubbleIn {
+    from { opacity: 0; transform: scale(0.85) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .chat-btn {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #5059C9;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(80,89,201,0.45);
+    transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .chat-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(80,89,201,0.55);
+  }
+
+  .chat-btn:active { transform: scale(0.96); }
+
+  .chat-btn svg { width: 26px; height: 26px; }
+
+  .chat-pulse {
+    position: absolute;
+    top: 0; right: 0;
+    width: 14px; height: 14px;
+    background: #4ade80;
+    border-radius: 50%;
+    border: 2px solid #fff;
+  }
+
+  .chat-pulse::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: rgba(74,222,128,0.4);
+    animation: pulse 2s ease-out infinite;
+  }
+
+  @keyframes pulse {
+    0%   { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
+
+  /* Dropdown panel */
+  .chat-panel {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.16);
+    width: 280px;
+    overflow: hidden;
+    display: none;
+    animation: bubbleIn 0.22s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+
+  .chat-panel.show { display: block; }
+
+  .chat-panel-header {
+    background: #5059C9;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chat-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+
+  .chat-panel-info { flex: 1; }
+
+  .chat-panel-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .chat-panel-role {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 1px;
+  }
+
+  .chat-online {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    color: #4ade80;
+    font-weight: 600;
+  }
+
+  .chat-online-dot {
+    width: 7px; height: 7px;
+    background: #4ade80;
+    border-radius: 50%;
+  }
+
+  .chat-panel-body {
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chat-msg-preview {
+    background: #f0f4fa;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    color: #5a6a8a;
+    line-height: 1.5;
+  }
+
+  .chat-msg-preview strong { color: #1a2235; display: block; margin-bottom: 3px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .chat-send-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #5059C9;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+    width: 100%;
+  }
+
+  .chat-send-btn:hover { background: #3d45a0; }
+
+  .chat-dismiss {
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    color: #aab;
+    cursor: pointer;
+    padding: 4px 0 8px;
+  }
+
+  .chat-dismiss:hover { color: #5a6a8a; }
+
+  /* ── MOBILE: bottom bar instead of FAB ─────────────────── */
+  @media (max-width: 640px) {
+    .chat-fab {
+      bottom: 0;
+      right: 0;
+      left: 0;
+      flex-direction: row;
+      align-items: stretch;
+      padding: 0;
+      gap: 0;
+    }
+
+    .chat-btn {
+      display: none; /* hidden — replaced by the bar */
+    }
+
+    .chat-panel {
+      width: 100%;
+      border-radius: 0;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+      display: flex !important;
+      animation: none;
+    }
+
+    .chat-panel-header {
+      padding: 12px 16px;
+    }
+
+    .chat-panel-body {
+      flex-direction: row;
+      align-items: center;
+      padding: 10px 14px;
+      gap: 10px;
+    }
+
+    .chat-msg-preview { display: none; }
+    .chat-dismiss { display: none; }
+
+    .chat-send-btn {
+      white-space: nowrap;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .chat-panel-info .chat-panel-role { display: none; }
+
+    /* push page content up so bar doesn't cover footer */
+    body { padding-bottom: 72px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Back nav -->
+<nav class="back-nav">
+  <a href="index.html">← Back to M365 Learning Hub</a>
+</nav>
+
+<!-- SLIDE 1: HERO -->
+<div class="slide">
+  <div class="slide-header"><span>State of Nebraska · IT Guide</span><span class="badge">1 OF 6</span></div>
+  <div class="hero">
+    <div class="hero-icon">📈</div>
+    <h1>Getting Started with Microsoft Power BI<em>State of Nebraska · Beginner's Guide</em></h1>
+    <p class="hero-sub">Your complete guide to getting up and running with Microsoft Power BI as a Nebraska.gov employee.</p>
+    <div class="hero-pills">
+      <span class="pill">📋 Overview</span>
+      <span class="pill">🚀 5 Steps</span>
+      <span class="pill">⚡ Tips</span>
+      <span class="pill">⌨️ Shortcuts</span>
+      <span class="pill">🆕 What's New</span>
+    </div>
+  </div>
+  <div class="slide-footer"><span>Nebraska.gov · Microsoft Power BI Guide</span><a href="https://learn.microsoft.com/power-bi/" target="_blank">learn.microsoft.com/power-bi/</a></div>
+</div>
+
+<!-- SLIDE 2: WHAT IS IT + 5 STEPS -->
+<div class="slide">
+  <div class="slide-header"><span>State of Nebraska · IT Guide</span><span class="badge">2 OF 6</span></div>
+  <div class="slide-body">
+    <div class="sec-eyebrow">The Basics</div>
+    <h2 class="sec-title">What is Microsoft Power BI?</h2>
+    <p class="sec-sub">A quick overview and 5 steps to get started today.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div><h3>Sign In</h3><p>Go to <strong>office.com</strong> and sign in with your Nebraska.gov Microsoft account to access Microsoft Power BI in your browser, or download the desktop app for the best experience.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div><h3>Explore the Interface</h3><p>Take a few minutes to click through the main menus and navigation. Hover over buttons to see tooltips — most features are self-explanatory once you explore.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div><h3>Try a Core Task</h3><p>Jump in and try the most common task — create a document, send a message, or build a simple workflow. Learning by doing is the fastest way to get comfortable.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div><h3>Connect with Your Team</h3><p>Share your work or collaborate with a colleague. Most M365 apps are built for real-time collaboration — invite someone to work with you early on.</p></div></div>
+      <div class="step"><div class="step-num">5</div><div><h3>Bookmark Help Resources</h3><p>Save <a href="https://learn.microsoft.com/power-bi/" target="_blank" style="color:var(--c1)">support.microsoft.com</a> and this guide for quick reference. Check the Resources slide at the end for deeper learning paths.</p></div></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>Nebraska.gov · Microsoft Power BI Guide</span><a href="https://learn.microsoft.com/power-bi/" target="_blank">learn.microsoft.com/power-bi/</a></div>
+</div>
+
+<!-- SLIDE 3: FEATURES + TIPS -->
+<div class="slide">
+  <div class="slide-header"><span>State of Nebraska · IT Guide</span><span class="badge">3 OF 6</span></div>
+  <div class="slide-body">
+    <div class="sec-eyebrow">Key Features</div>
+    <h2 class="sec-title">What Can You Do with Microsoft Power BI?</h2>
+    <p class="sec-sub">Core features and pro tips to get more out of Microsoft Power BI.</p>
+    <div class="features">
+      <div class="feat"><div class="feat-icon">⚡</div><h4>Quick Access</h4><p>Pin your most-used items for faster navigation and fewer clicks every day.</p></div>
+      <div class="feat"><div class="feat-icon">🤝</div><h4>Real-Time Collaboration</h4><p>Work simultaneously with teammates — see changes as they happen, live.</p></div>
+      <div class="feat"><div class="feat-icon">📱</div><h4>Mobile Access</h4><p>Access Power BI from your phone or tablet with the free Microsoft app.</p></div>
+      <div class="feat"><div class="feat-icon">🔍</div><h4>Powerful Search</h4><p>Find files, messages, or data quickly using the built-in search bar.</p></div>
+      <div class="feat"><div class="feat-icon">🔔</div><h4>Notifications</h4><p>Stay informed with smart alerts that only surface what matters most to you.</p></div>
+      <div class="feat"><div class="feat-icon">🤖</div><h4>Copilot AI</h4><p>Use Microsoft Copilot within Power BI to save time and boost productivity.</p></div>
+    </div>
+    <div class="sec-eyebrow" style="margin-top:8px;">Pro Tips</div>
+    <div class="tips">
+      <div class="tip"><h4>💡 Use the Search Bar</h4><p>The search bar is often the fastest way to find features, files, or people — use it before digging through menus.</p></div>
+      <div class="tip"><h4>💡 Right-Click Everything</h4><p>Right-clicking items usually reveals a context menu with powerful options that aren't visible by default.</p></div>
+      <div class="tip"><h4>💡 Try Dark Mode</h4><p>Go to Settings → Appearance to switch to Dark Mode — easier on the eyes for long work sessions.</p></div>
+      <div class="tip"><h4>💡 Pin to Taskbar</h4><p>Pin Power BI to your Windows taskbar for one-click access without opening a browser every time.</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>Nebraska.gov · Microsoft Power BI Guide</span><a href="https://learn.microsoft.com/power-bi/" target="_blank">learn.microsoft.com/power-bi/</a></div>
+</div>
+
+<!-- SLIDE 4: SHORTCUTS -->
+<div class="slide">
+  <div class="slide-header"><span>State of Nebraska · IT Guide</span><span class="badge">4 OF 6</span></div>
+  <div class="slide-body">
+    <div class="sec-eyebrow">Work Faster</div>
+    <h2 class="sec-title">Keyboard Shortcuts</h2>
+    <p class="sec-sub">Essential shortcuts to speed up your Power BI workflow.</p>
+    <div class="shortcuts">
+      <div class="shortcut"><span class="key">Ctrl + S</span><span>Save your work</span></div>
+      <div class="shortcut"><span class="key">Ctrl + Z</span><span>Undo last action</span></div>
+      <div class="shortcut"><span class="key">Ctrl + C</span><span>Copy selected item</span></div>
+      <div class="shortcut"><span class="key">Ctrl + V</span><span>Paste copied item</span></div>
+      <div class="shortcut"><span class="key">Ctrl + F</span><span>Find / Search</span></div>
+      <div class="shortcut"><span class="key">Ctrl + P</span><span>Print</span></div>
+      <div class="shortcut"><span class="key">F5</span><span>Refresh / Reload</span></div>
+      <div class="shortcut"><span class="key">Alt + F4</span><span>Close window</span></div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:20px;">💡 For the complete list of Power BI-specific shortcuts, visit <a href="https://learn.microsoft.com/power-bi/" target="_blank" style="color:var(--c1)">learn.microsoft.com/power-bi/</a></p>
+  </div>
+  <div class="slide-footer"><span>Nebraska.gov · Microsoft Power BI Guide</span><a href="https://learn.microsoft.com/power-bi/" target="_blank">learn.microsoft.com/power-bi/</a></div>
+</div>
+
+<!-- SLIDE 5: WHAT'S NEW -->
+<div class="slide">
+  <div class="slide-header"><span>State of Nebraska · IT Guide</span><span class="badge">5 OF 6</span></div>
+  <div class="slide-body">
+    <div class="sec-eyebrow">2025–2026</div>
+    <h2 class="sec-title">What's New in Microsoft Power BI</h2>
+    <p class="sec-sub">Recent updates and features added to Power BI in the past year.</p>
+    <div class="new-grid">
+      <div class="new-card"><span class="new-badge">NEW</span><div><h4>🤖 Copilot Integration</h4><p>Microsoft Copilot AI is now built into Power BI — summarize, generate, and analyze with natural language.</p></div></div>
+      <div class="new-card"><span class="new-badge">NEW</span><div><h4>🎨 Refreshed Interface</h4><p>Cleaner navigation and updated visual design across all M365 apps for a more consistent experience.</p></div></div>
+      <div class="new-card"><span class="new-badge">NEW</span><div><h4>⚡ Performance Improvements</h4><p>Faster load times, smoother scrolling, and improved reliability across desktop and web versions.</p></div></div>
+      <div class="new-card"><span class="new-badge">NEW</span><div><h4>🔒 Enhanced Security</h4><p>New sensitivity labels and data protection features help keep Nebraska state data secure and compliant.</p></div></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>Nebraska.gov · Microsoft Power BI Guide</span><a href="https://learn.microsoft.com/power-bi/" target="_blank">learn.microsoft.com/power-bi/</a></div>
+</div>
+
+<!-- SLIDE 6: RESOURCES -->
+<div class="slide">
+  <div class="slide-header"><span>State of Nebraska · IT Guide</span><span class="badge">6 OF 6</span></div>
+  <div class="slide-body">
+    <div class="sec-eyebrow">Go Deeper</div>
+    <h2 class="sec-title">Further Learning &amp; Resources</h2>
+    <p class="sec-sub">Official links to help you build your Power BI skills beyond this guide.</p>
+    <div class="res-grid">
+      <a href="https://learn.microsoft.com/power-bi/" target="_blank" class="res-link res-primary">
+        <span class="res-icon">🛟</span>
+        <div>
+          <div class="res-title">Microsoft Support — Power BI</div>
+          <div class="res-desc">Official help articles, how-tos, and troubleshooting from Microsoft.</div>
+        </div>
+        <span class="res-arr">↗</span>
+      </a>
+      <a href="https://learn.microsoft.com/training/paths/get-started-power-bi/" target="_blank" class="res-link res-primary">
+        <span class="res-icon">🎓</span>
+        <div>
+          <div class="res-title">Microsoft Learn — Power BI Training</div>
+          <div class="res-desc">Free self-paced learning paths and certifications from Microsoft.</div>
+        </div>
+        <span class="res-arr">↗</span>
+      </a>
+      
+      <a href="https://learn.microsoft.com/power-bi/fundamentals/videos" target="_blank" class="res-link">
+        <span class="res-icon">📺</span>
+        <div>
+          <div class="res-title">Power BI Video Training</div>
+          <div class="res-desc">Guided video series from beginner to advanced.</div>
+        </div>
+        <span class="res-arr">↗</span>
+      </a>
+      <a href="https://community.powerbi.com/" target="_blank" class="res-link">
+        <span class="res-icon">🌐</span>
+        <div>
+          <div class="res-title">Power BI Community</div>
+          <div class="res-desc">Forums, ideas, and examples from the global community.</div>
+        </div>
+        <span class="res-arr">↗</span>
+      </a>
+      <a href="https://learn.microsoft.com/power-bi/create-reports/sample-datasets" target="_blank" class="res-link">
+        <span class="res-icon">📊</span>
+        <div>
+          <div class="res-title">Power BI Sample Reports</div>
+          <div class="res-desc">Download and explore pre-built sample dashboards.</div>
+        </div>
+        <span class="res-arr">↗</span>
+      </a>
+      <a href="https://learn.microsoft.com/certifications/power-bi-data-analyst-associate/" target="_blank" class="res-link">
+        <span class="res-icon">🎓</span>
+        <div>
+          <div class="res-title">Power BI Certification (PL-300)</div>
+          <div class="res-desc">Microsoft certification path for Power BI analysts.</div>
+        </div>
+        <span class="res-arr">↗</span>
+      </a>
+    </div>
+    <div class="res-back">
+      <a href="index.html" class="back-link-btn">← Back to M365 Learning Hub</a>
+    </div>
+  </div>
+  <div class="slide-footer"><span>Nebraska.gov · Microsoft Power BI Guide</span><a href="https://learn.microsoft.com/power-bi/" target="_blank">learn.microsoft.com/power-bi/</a></div>
+</div>
+
+<!-- OUTRO -->
+<div class="slide">
+  <div class="slide-header"><span>State of Nebraska · IT Guide</span><span class="badge">SUPPORT</span></div>
+  <div class="outro">
+    <div class="outro-icon">🎉</div>
+    <h1>You're ready to go!<em>Microsoft Power BI</em></h1>
+    <p class="outro-sub">Have a question or need help getting started? Message Lance directly on Teams — he's here to help.</p>
+    <a class="cta-btn" href="https://teams.microsoft.com/l/chat/0/0?users=lance.terrill@nebraska.gov&message=Hi%20Lance%2C%20I%20need%20help%20with%20Microsoft%20Power%20BI!">💬 I need help! — Message Lance on Teams</a>
+    <span class="outro-link">More resources at <a href="https://learn.microsoft.com/power-bi/" target="_blank">learn.microsoft.com/power-bi/</a></span>
+  </div>
+  <div class="slide-footer"><span>Nebraska.gov</span><span>2026</span></div>
+</div>
+
+
+<!-- ── FLOATING CHAT BUTTON ── -->
+<div class="chat-fab" id="chatFab">
+  <!-- Desktop panel (shown on button click) -->
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-panel-header">
+      <div class="chat-avatar">👤</div>
+      <div class="chat-panel-info">
+        <div class="chat-panel-name">Lance Terrill</div>
+        <div class="chat-panel-role">NDOI · IT Support</div>
+      </div>
+      <div class="chat-online"><div class="chat-online-dot"></div>Available</div>
+    </div>
+    <div class="chat-panel-body">
+      <div class="chat-msg-preview">
+        <strong>Message Preview</strong>
+        Hi Lance, I need help with this M365 guide!
+      </div>
+      <a class="chat-send-btn"
+         href="https://teams.microsoft.com/l/chat/0/0?users=lance.terrill@nebraska.gov&message=Hi%20Lance%2C%20I%20need%20help%20with%20this%20M365%20guide!"
+         target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Open in Teams
+      </a>
+      <div class="chat-dismiss" onclick="toggleChat()">Dismiss</div>
+    </div>
+  </div>
+
+  <!-- Desktop FAB button -->
+  <button class="chat-btn" id="chatBtn" onclick="toggleChat()" aria-label="Chat with IT Support">
+    <div class="chat-pulse"></div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+function toggleChat() {
+  const panel = document.getElementById('chatPanel');
+  panel.classList.toggle('show');
+}
+// Close panel if clicking outside
+document.addEventListener('click', function(e) {
+  const fab = document.getElementById('chatFab');
+  if (!fab.contains(e.target)) {
+    document.getElementById('chatPanel').classList.remove('show');
+  }
+});
+</script>
+
+</body>
+</html>
