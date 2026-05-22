@@ -6,7 +6,7 @@
 
 ## 🌐 Live Site
 
-**[lanceterrill.github.io/m365](https://lanceterrill.github.io/m365)** *(update URL once deployed)*
+**[lanceterrill.github.io/getting-started-m365](https://lanceterrill.github.io/getting-started-m365)**
 
 ---
 
@@ -14,11 +14,12 @@
 
 ```
 /
-├── index.html                          ← Main portal / landing page
+├── index.html                               ← Main portal / landing page (search + filter)
 ├── getting-started-teams.html
 ├── getting-started-sharepoint.html
 ├── getting-started-outlook.html
 ├── getting-started-onedrive.html
+├── getting-started-onenote.html             ← NEW in 2026
 ├── getting-started-word.html
 ├── getting-started-excel.html
 ├── getting-started-powerpoint.html
@@ -31,28 +32,29 @@
 ├── README.md
 └── .github/
     └── workflows/
-        └── deploy.yml                  ← GitHub Actions auto-deploy
+        └── deploy.yml                       ← GitHub Actions auto-deploy
 ```
 
 ---
 
 ## 📚 Guides Included
 
-| App | File | Category |
-|---|---|---|
-| 💬 Microsoft Teams | `getting-started-teams.html` | Collaboration |
-| 🗂️ SharePoint | `getting-started-sharepoint.html` | Collaboration |
-| 📧 Outlook | `getting-started-outlook.html` | Productivity |
-| ☁️ OneDrive | `getting-started-onedrive.html` | Productivity |
-| 📝 Word | `getting-started-word.html` | Productivity |
-| 📊 Excel | `getting-started-excel.html` | Productivity |
-| 📽️ PowerPoint | `getting-started-powerpoint.html` | Productivity |
-| 📋 Planner | `getting-started-planner.html` | Collaboration |
-| ✅ To Do | `getting-started-todo.html` | Productivity |
-| 📝 Forms | `getting-started-forms.html` | Productivity |
-| 📈 Power BI | `getting-started-powerbi.html` | Power Platform |
-| ⚡ Power Automate | `getting-started-powerautomate.html` | Power Platform |
-| 📱 Power Apps | `getting-started-powerapps.html` | Power Platform |
+| App                  | File                                          | Category         |
+| -------------------- | --------------------------------------------- | ---------------- |
+| 💬 Microsoft Teams   | `getting-started-teams.html`                  | Collaboration    |
+| 🗂️ SharePoint        | `getting-started-sharepoint.html`             | Collaboration    |
+| 📋 Planner           | `getting-started-planner.html`                | Collaboration    |
+| 📓 OneNote           | `getting-started-onenote.html`                | Collaboration    |
+| 📧 Outlook           | `getting-started-outlook.html`                | Productivity     |
+| ☁️ OneDrive          | `getting-started-onedrive.html`               | Productivity     |
+| 📝 Word              | `getting-started-word.html`                   | Productivity     |
+| 📊 Excel             | `getting-started-excel.html`                  | Productivity     |
+| 📽️ PowerPoint        | `getting-started-powerpoint.html`             | Productivity     |
+| ✅ To Do             | `getting-started-todo.html`                   | Productivity     |
+| 📝 Forms             | `getting-started-forms.html`                  | Productivity     |
+| 📈 Power BI          | `getting-started-powerbi.html`                | Power Platform   |
+| ⚡ Power Automate    | `getting-started-powerautomate.html`          | Power Platform   |
+| 📱 Power Apps        | `getting-started-powerapps.html`              | Power Platform   |
 
 ---
 
@@ -65,7 +67,19 @@ Each guide is a standalone single-file HTML page with 6 sections:
 3. **Key Features + Pro Tips** — Core capabilities and power-user advice
 4. **Keyboard Shortcuts** — Essential shortcuts for faster workflows
 5. **What's New** — 2025–2026 updates and Copilot integrations
-6. **Further Learning & Resources** — Official Microsoft support, Learn training paths, video tutorials, certifications, and more
+6. **Further Learning & Resources** — Official Microsoft support, Learn training paths, video tutorials, and more
+
+---
+
+## 🏠 Hub Page Features (index.html)
+
+The landing page includes:
+
+- **Live search** — Filter all 14 apps by name, feature, or keyword in real time
+- **Category tabs** — Filter by Collaboration / Productivity / Power Platform
+- **14-app card grid** — Organized by category with descriptions and key feature tags
+- **What's New banner** — Highlights latest guide additions
+- **Responsive design** — Works on desktop, tablet, and mobile
 
 ---
 
@@ -84,11 +98,11 @@ This repo auto-deploys to GitHub Pages via GitHub Actions on every push to `main
 ### First-Time Setup
 
 ```bash
-git clone https://github.com/lanceterrill/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/lanceterrill/getting-started-m365.git
+cd getting-started-m365
 # Add your files
 git add .
-git commit -m "Initial deploy: M365 Learning Hub"
+git commit -m "Update: OneNote guide + index refresh May 2026"
 git push origin main
 ```
 
@@ -101,6 +115,7 @@ GitHub Actions will automatically build and deploy within ~1–2 minutes.
 Each guide is a **self-contained HTML file** — no build tools, no dependencies, no npm.
 
 To update a guide:
+
 1. Edit the relevant `.html` file directly
 2. Commit and push to `main`
 3. GitHub Actions redeploys automatically
@@ -109,7 +124,7 @@ To update a guide:
 
 ## 🎨 Design
 
-- **Fonts:** Barlow Condensed (headings) + Outfit (body)
+- **Fonts:** Barlow Condensed 900 (headings) + Outfit (body)
 - **Colors:** Nebraska Navy `#003087` · Nebraska Gold `#FFCD00`
 - **Each app** has a unique accent color matching Microsoft's branding
 - All pages are fully responsive (mobile, tablet, desktop)
